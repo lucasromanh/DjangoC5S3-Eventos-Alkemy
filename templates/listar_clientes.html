@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+    <div class='conteiner'>
+        <h2>Lista de Clientes</h2>
+
+        <div class="table-responsive p-5">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Activo</th>
+                    <th>Acciones a realizar</th>
+                </tr>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.id }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>
+                        {% if cliente.activo %}
+                            {{ 'Si' }}
+                        {% else %}
+                            {{ 'No' }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ '/actualizar_cliente' }}/{{ cliente.id }}" class="btn btn-primary">Actualizar</a>
+                        {% if cliente.activo %}
+                            <a href="{{ '/desactivar_cliente' }}/{{ cliente.id }}" class="btn btn-danger">Desactivar</a>
+                        {% else %}
+                            <a href="{{ '/activar_cliente' }}/{{ cliente.id }}" class="btn btn-success">Activar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No hay clientes registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <a href="{{ '/crear_cliente' }}" class="btn btn-outline-primary">Registrar un Cliente</a>
+    </div>
+{% endblock %}

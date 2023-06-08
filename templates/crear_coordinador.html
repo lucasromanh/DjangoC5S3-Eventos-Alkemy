@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+    <div class='container p-5'>
+        <h2>Crear Coordinador</h2>
+        <form action="" method="post">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+            
+            <div class="table">
+                <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.nombre.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="table">
+                <label for="{{ form.apellido.id_for_label }}">Apellido:</label>
+                {{ form.apellido }}
+                {% if form.apellido.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.apellido.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="table">
+                <label for="{{ form.numero_documento.id_for_label }}">Documento: </label>
+                {{ form.numero_documento }}
+                {% if form.numero_documento.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.numero_documento.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>         
+            <br>
+            <button class="btn btn-outline-primary">Guardar</button>
+
+        </form>
+    </div>
+{% endblock %}

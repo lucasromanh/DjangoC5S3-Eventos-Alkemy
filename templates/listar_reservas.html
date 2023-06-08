@@ -1,0 +1,51 @@
+{% extends 'index.html'%}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+    <div class='container p-5'>
+    
+        <h2>Lista de Reservas de Servicios</h2>
+        <br>
+<br>
+
+        <div class="table-responsive">
+            <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Creación</th>
+                        <th>Fecha de Reserva</th>
+                        <th>Cliente</th>
+                        <th>Responsable</th>
+                        <th>Empleado</th>
+                        <th>Servicio</th>
+                        <th>Acciones a realizar</th>
+                    </tr>
+                <tbody>
+                    {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.id }}</td>
+                        <td>{{ reserva.fecha_creacion.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ reserva.fecha_reserva }}</td>
+                        <td>{{ reserva.cliente }}</td>
+                        <td>{{ reserva.responsable }}</td>
+                        <td>{{ reserva.empleado }}</td>
+                        <td>{{ reserva.servicio }}</td>
+                        <td>
+                            <a href="{{ '/actualizar_reserva' }}/{{ reserva.id }}" button type="button" class="btn btn-primary">Actualizar</a>
+                            <a href="{{ '/eliminar_reserva' }}/{{ reserva.id }}"button type="button" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            <a href="{{ '/crear_reserva' }}" class="btn btn-outline-primary">Registrar una Reserva</a>
+
+        </div>
+    </div>
+
+{% endblock %}

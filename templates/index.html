@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ static('css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ static('css/index.css') }}"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principal Eventos</title>
+    <script
+      src="https://kit.fontawesome.com/eb496ab1a0.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <!--<div class="contenedor">
+            <img class="foto" src="{{ static('img/logo1.jpg') }}" id="fot" alt="">
+            <h3 class="logo" id="nombre">SC5S3 Servicios</h3> 
+        </div>
+        <nav class="menu">
+            <a href="/listar_empleados/" class="button">Empleados</a></li>
+            <a href="/listar_clientes/" class="button">Clientes</a></li>
+            <a href="/listar_coordinadores/" class="button">Coordinadores</a></li>
+            <a href="/listar_servicios/" class="button">Servicios</a></li>
+            <a href="/listar_reservas/" class="button">Reservas</a></li>
+            <label for="check" class="esconder-menu">
+                &#215
+            </label>
+        </nav>-->
+      <nav
+        class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+        id="navbar"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"
+            ><img
+              class="foto"
+              src="{{ static('img/logo1.jpg') }}"
+              id="fot"
+              alt=""
+          /></a>
+          <button
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-bs-target="#navbarSupportedContent"
+            data-bs-toggle="collapse"
+            type="button"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mx-auto">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-left: 10px color: white"
+                  href="/listar_empleados/"
+                  >Empleados</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-left: 10px"
+                  href="/listar_clientes/"
+                  >Clientes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-left: 10px"
+                  href="/listar_coordinadores/"
+                  >Coordinadores</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-left: 10px"
+                  href="/listar_servicios/"
+                  >Servicios</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-left: 10px"
+                  href="/listar_reservas/"
+                  >Reservas</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex" role="search" method="GET">
+                <select id="opciones" class="form-select" aria-label="Buscar por" onchange="redireccionar()">
+                  <option value="empleado">Empleado</option>
+                  <option value="coordinador">Coordinador</option>
+                  <option value="servicio">Servicio</option>
+                  <option value="reserva">Reserva</option>
+                  <option value="cliente">Cliente</option>
+                </select>
+                
+                <button class="btn btn-success" type="button" onclick="redireccionar()">Registrar</button>
+                <input name="search" style="visibility: hidden; width: 0; height: 0;">
+
+                <script>
+                  function redireccionar() {
+                    var seleccionado = document.getElementById("opciones").value;
+                    var searchValue = getSearchValue();
+              
+                    switch (seleccionado) {
+                      case "empleado":
+                        window.location.href = "/crear_empleado/?search=" + searchValue;
+                        break;
+                      case "coordinador":
+                        window.location.href = "/crear_coordinador/?search=" + searchValue;
+                        break;
+                      case "servicio":
+                        window.location.href = "/crear_servicio/?search=" + searchValue;
+                        break;
+                      case "reserva":
+                        window.location.href = "/crear_reserva/?search=" + searchValue;
+                        break;
+                      case "cliente":
+                        window.location.href = "/crear_cliente/?search=" + searchValue;
+                        break;
+                      default:
+                        alert("Selecciona una opción válida");
+                        break;
+                    }
+                  }
+              
+                  function getSearchValue() {
+                    var searchInput = document.querySelector("input[name='search']");
+                    return searchInput.value;
+                  }
+                </script>
+              </form>
+
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% block content %}
+    <br>
+    <br>
+    <br><br>
+    <section id="banner">
+      <div class="img-fluid">
+        <img
+          class="img-fluid"
+          src="{{ static('img/banner.jpg') }}"
+          id="fimag"
+          alt=""
+        />
+      </div>
+    </section>
+
+    {% endblock %}
+
+    <br>
+    <br>
+    <footer class="pie-pagina" id="pie">
+      <div class="footer">
+        <footer
+          class="text-center text-white"
+          style="background-color: #3f51b5"
+        >
+          <div class="container">
+            <section class="mt-5">
+              <div class="row text-center d-flex justify-content-center pt-5">
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{{ '/sobre_nosotros' }}" class="text-white">Sobre Nosotros</a>
+                  </h6>
+                </div>
+
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{{ '/listar_servicios' }}" class="text-white">Servicios</a>
+                  </h6>
+                </div>
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{{ '/contrataciones' }}" class="text-white">Formulario</a>
+                  </h6>
+                </div>
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{{ '/contacto' }}" class="text-white">Contacto</a>
+                  </h6>
+                </div>
+              </div>
+            </section>
+
+            <hr class="my-5" />
+
+            <section class="mb-5">
+              <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                  <p> <img class="foto" src="{{ static('img/logo1.jpg') }}" id="fot" alt="" style="margin-right:54px ; scale:3">
+                    Squad N3 de Comision 5 - Alkemy - Formacion Django
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="text-center mb-5">
+              <a href="https://www.facebook.com/" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.twitter.com/" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://www.google.com.ar/" class="text-white me-4">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="https://www.instagram.com/" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/panchocdk/DjangoC5S3-Eventos" class="text-white me-4">
+                <i class="fab fa-github"></i>
+              </a>
+            </section>
+          </div>
+          <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+          >
+            © 2023 Copyright  |
+            <a class="text-white" href="https:www.saltacoders.com/"
+              >saltacoders.com.ar</a
+            >
+          </div>
+        </footer>
+      </div>
+    <script src="{{ static('js/jquery.min.js') }}"></script>
+    <script src="{{ static('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ static('js/popper.min.js') }}"></script>
+  </body>
+</html>

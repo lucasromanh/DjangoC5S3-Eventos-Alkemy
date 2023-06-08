@@ -1,0 +1,54 @@
+
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+<br>
+<br>
+<br>
+    <div class='container p-5'>
+        <h2>Lista de Empleados</h2>
+
+        <div class="table-responsive p-5">
+            <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Numero de Legajo</th>
+                        <th>Activo</th>
+                        <th>Acciones a realizar</th>
+                    </tr>
+                <tbody>
+                    {% for empleado in empleados %}
+                    <tr>
+                        <td>{{ empleado.id }}</td>
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.apellido }}</td>
+                        <td>{{ empleado.numero_legajo }}</td>
+                        <td>
+                            {% if empleado.activo %}
+                                {{ 'Si' }}
+                            {% else %}
+                                {{ 'No' }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ '/actualizar_empleado' }}/{{ empleado.id }}" button type="button" class="btn btn-primary"</button>Actualizar</a>
+                            {% if empleado.activo %}
+                                <a href="{{ '/desactivar_empleado' }}/{{ empleado.id }}" button type="button" class="btn btn-danger">Desactivar</a>
+                            {% else %}
+                                <a href="{{ '/activar_empleado' }}/{{ empleado.id }}" class="btn btn-success">Activar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            <a href="{{ '/crear_empleado' }}" class="btn btn-outline-primary">Registrar un Empleado</a>
+        </div>
+    </div>
+{% endblock %}
